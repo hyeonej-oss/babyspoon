@@ -330,7 +330,7 @@ async function startAnalyze(){
   }));
   try{
     const prompt='이 이미지는 아기숟가락 용인점의 유아식 식단표입니다.\n이미지에서 유아식 메뉴만 추출해주세요. (이유식은 제외)\n각 요일의 메뉴 코드(X,Y,Q,U,Z,W,T 등), 메뉴 이름, 금액을 읽어주세요.\n금액은 "6.5"는 6500, "6.0"은 6000, "7.0"은 7000 으로 변환해주세요.\n\n반드시 아래 JSON 형식만 반환하세요. 마크다운 없이 순수 JSON만:\n{"요일라벨(예:5/18(월))":[{"code":"X","name":"한우맑은육개장","price":6500},...],...}\n\n요일 라벨은 이미지에 있는 그대로 사용해주세요.';
-    const res=await fetch('https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key='+apiKey,{
+    const res=await fetch('https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-pro:generateContent?key='+apiKey,{
       method:'POST',headers:{'Content-Type':'application/json'},
       body:JSON.stringify({contents:[{parts:[...imgs,{text:prompt}]}],generationConfig:{temperature:0.1}})
     });
